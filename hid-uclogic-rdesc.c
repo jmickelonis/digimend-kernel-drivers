@@ -688,6 +688,31 @@ const size_t uclogic_rdesc_pen_v2_template_size =
 			/*          Report Count (padding),     */ \
 	0x81, 0x01,     /*          Input (Constant),           */ \
 	0xC0,           /*      End Collection,                 */ \
+	0xC0,           /*  End Collection                      */ \
+								   \
+	0x05, 0x01,     /*  Usage Page (Desktop),               */ \
+	0x09, 0x07,     /*  Usage (Keypad),                     */ \
+	0xA1, 0x01,     /*  Collection (Application),           */ \
+	0x85, UCLOGIC_RDESC_DIAL_ID,                               \
+			/*      Report ID (DIAL_ID),            */ \
+	0x14,           /*      Logical Minimum (0),            */ \
+	0x05, 0x0D,     /*      Usage Page (Digitizer),         */ \
+	0x09, 0x39,     /*      Usage (Tablet Function Keys),   */ \
+	0xA0,           /*      Collection (Physical),          */ \
+	0x75, 0x08,     /*          Report Size (8),            */ \
+	0x95, 0x04,     /*          Report Count (4),           */ \
+	0x81, 0x01,     /*          Input (Constant),           */ \
+	0x05, 0x01,     /*          Usage Page (Desktop),       */ \
+	0x09, 0x38,     /*          Usage (Wheel),              */ \
+	0x75, 0x08,     /*          Report Size (8),            */ \
+	0x95, 0x01,     /*          Report Count (1),           */ \
+	0x15, 0x01,     /*          Logical Minimum (1),        */ \
+	0x25, 0x0C,     /*          Logical Maximum (12),       */ \
+	0x81, 0x02,     /*          Input (Variable),           */ \
+	0x95, ((_size) * 8 - 40),                                  \
+			/*          Report Count (padding),     */ \
+	0x81, 0x01,     /*          Input (Constant),           */ \
+	0xC0,           /*      End Collection,                 */ \
 	0xC0            /*  End Collection                      */
 
 /* Fixed report descriptor for (tweaked) v1 buttonpad reports */

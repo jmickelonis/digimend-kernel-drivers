@@ -128,6 +128,9 @@ extern const size_t uclogic_rdesc_buttonpad_v1_size;
 extern const __u8 uclogic_rdesc_buttonpad_v2_arr[];
 extern const size_t uclogic_rdesc_buttonpad_v2_size;
 
+/* Report ID for tweaked dial reports */
+#define UCLOGIC_RDESC_DIAL_ID 0xf8
+
 /* Fixed report descriptor for Ugee EX07 buttonpad */
 extern const __u8 uclogic_rdesc_ugee_ex07_buttonpad_arr[];
 extern const size_t uclogic_rdesc_ugee_ex07_buttonpad_size;

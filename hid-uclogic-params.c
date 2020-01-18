@@ -754,10 +754,13 @@ static int uclogic_params_huion_init(struct uclogic_params *params,
 					rc);
 				goto cleanup;
 			}
-			/* Link frame button subreports from pen reports */
+			/* Link button and dial subreports from pen reports */
 			p.pen.subreport_list[0].mask = 0x20;
 			p.pen.subreport_list[0].id =
 				UCLOGIC_RDESC_BUTTONPAD_ID;
+			p.pen.subreport_list[1].mask = 0x10;
+			p.pen.subreport_list[1].id =
+				UCLOGIC_RDESC_DIAL_ID;
 			goto output;
 		}
 		hid_dbg(hdev, "pen v2 parameters not found\n");
