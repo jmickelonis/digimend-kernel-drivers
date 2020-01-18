@@ -661,7 +661,8 @@ const size_t uclogic_rdesc_pen_v2_template_size =
 	0x05, 0x01,     /*  Usage Page (Desktop),               */ \
 	0x09, 0x07,     /*  Usage (Keypad),                     */ \
 	0xA1, 0x01,     /*  Collection (Application),           */ \
-	0x85, 0xF7,     /*      Report ID (247),                */ \
+	0x85, UCLOGIC_RDESC_BUTTONPAD_ID,                          \
+			/*      Report ID (BUTTONPAD_ID),       */ \
 	0x14,           /*      Logical Minimum (0),            */ \
 	0x25, 0x01,     /*      Logical Maximum (1),            */ \
 	0x75, 0x01,     /*      Report Size (1),                */ \
