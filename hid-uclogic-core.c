@@ -368,22 +368,29 @@ static int uclogic_raw_event(struct hid_device *hdev,
 		return 0;
 	}
 
-	/* Tweak pen reports, if necessary */
-	if ((report_id == params->pen.id) && (size >= 2)) {
-		/* If it's the "virtual" frame controls report */
-		if (params->frame.id != 0 &&
-		    data[1] & params->pen_frame_flag) {
-			/* Change to virtual frame controls report ID */
-			report_id = data[0] = params->frame.id;
-		} else {
-			return uclogic_raw_event_pen(drvdata, data, size);
+	do {
+		/* Tweak pen reports, if necessary */
+		if ((report_id == params->pen.id) && (size >= 2)) {
+			struct uclogic_params_pen_subreport *subreport;
+			/* Try to match a subreport */
+			for (subreport = params->pen.subreport_list;
+			     data[1] & subreport->mask; subreport++);
+			/* If a subreport matched */
+			if (subreport < params->pen.subreport_list +
+				ARRAY_SIZE(params->pen.subreport_list)) {
+				/* Change to subreport ID, and restart */
+				report_id = data[0] = subreport->id;
+				continue;
+			} else {
+				return uclogic_raw_event_pen(drvdata, data, size);
+			}
 		}
-	}
 
-	/* Tweak frame control reports, if necessary */
-	if (report_id == params->frame.id) {
-		return uclogic_raw_event_frame(drvdata, data, size);
-	}
+		/* Tweak frame control reports, if necessary */
+		if (report_id == params->frame.id) {
+			return uclogic_raw_event_frame(drvdata, data, size);
+		}
+	} while (false);
 
 	return 0;
 }
