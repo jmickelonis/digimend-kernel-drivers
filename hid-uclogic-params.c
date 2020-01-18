@@ -487,7 +487,7 @@ static int uclogic_params_frame_init_v1_buttonpad(
 				frame,
 				uclogic_rdesc_buttonpad_v1_arr,
 				uclogic_rdesc_buttonpad_v1_size,
-				UCLOGIC_RDESC_BUTTONPAD_V1_ID);
+				UCLOGIC_RDESC_BUTTONPAD_ID);
 		if (rc != 0)
 			goto cleanup;
 		found = true;
@@ -747,7 +747,7 @@ static int uclogic_params_huion_init(struct uclogic_params *params,
 					&p.frame,
 					uclogic_rdesc_buttonpad_v2_arr,
 					uclogic_rdesc_buttonpad_v2_size,
-					UCLOGIC_RDESC_BUTTONPAD_V2_ID);
+					UCLOGIC_RDESC_BUTTONPAD_ID);
 			if (rc != 0) {
 				hid_err(hdev,
 					"failed creating v2 buttonpad parameters: %d\n",
@@ -757,7 +757,7 @@ static int uclogic_params_huion_init(struct uclogic_params *params,
 			/* Link frame button subreports from pen reports */
 			p.pen.subreport_list[0].mask = 0x20;
 			p.pen.subreport_list[0].id =
-				UCLOGIC_RDESC_BUTTONPAD_V2_ID;
+				UCLOGIC_RDESC_BUTTONPAD_ID;
 			goto output;
 		}
 		hid_dbg(hdev, "pen v2 parameters not found\n");
@@ -785,7 +785,7 @@ static int uclogic_params_huion_init(struct uclogic_params *params,
 			/* Link frame button subreports from pen reports */
 			p.pen.subreport_list[0].mask = 0x20;
 			p.pen.subreport_list[0].id =
-				UCLOGIC_RDESC_BUTTONPAD_V1_ID;
+				UCLOGIC_RDESC_BUTTONPAD_ID;
 		}
 		goto output;
 	}
